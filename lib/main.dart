@@ -1,3 +1,6 @@
+import 'package:campusdual_for_android/page/calendar.dart';
+import 'package:campusdual_for_android/page/documents.dart';
+import 'package:campusdual_for_android/page/grades.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,8 +32,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   int currentIndex = 0;
+
+  final screens = [
+    CalendarPage(),
+    GradesPage(),
+    DocumentsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(),
+      body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() {
@@ -46,18 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
         }),
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined),
-              label: 'Kalender',
-              backgroundColor: Colors.blueAccent),
+              icon: Icon(Icons.calendar_month_outlined), label: 'Kalender'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.note_alt_sharp),
-              label: 'Notenübersicht',
-              backgroundColor: Colors.blueAccent),
+              icon: Icon(Icons.note_alt_sharp), label: 'Notenübersicht'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.document_scanner),
-            label: 'Dokumente',
-            backgroundColor: Colors.blueAccent,
-          )
+              icon: Icon(Icons.document_scanner), label: 'Dokumente')
         ],
       ),
     );
